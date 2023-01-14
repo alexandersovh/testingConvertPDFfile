@@ -1,5 +1,4 @@
 ﻿using iText.Kernel.Pdf;
-using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using iTextSharp.text.pdf.parser;
 using System.Text;
