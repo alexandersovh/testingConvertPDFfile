@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using iTextSharp.text.pdf;
-using iTextSharp.text.pdf.parser;
 using System.Threading.Tasks;
-
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Kernel.Pdf;
+using iText.Layout.Properties;
 
 namespace testingConvertPDFfile
 {
@@ -25,9 +26,21 @@ namespace testingConvertPDFfile
             string result = testObj.ReadPdfFile(path);
             Console.WriteLine(result);
             Console.ReadKey();
-
-            
         }
+        static void ConvOnTtext(string path)
+        {
+            // Must have write permissions to the path folder
+            PdfWriter writer = new PdfWriter(path);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+            Paragraph header = new Paragraph("HEADER")
+               .SetTextAlignment(TextAlignment.CENTER)
+               .SetFontSize(20);
+
+            document.Add(header);
+            document.Close();
+        }
+
     }
 }
 

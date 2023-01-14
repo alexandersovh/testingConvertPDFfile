@@ -1,12 +1,9 @@
-﻿using iTextSharp.text.pdf.parser;
-using iTextSharp.text.pdf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using iText.Kernel.Pdf;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Parser.Listener;
+using iTextSharp.text.pdf.parser;
 using System.Text;
-using System.Threading.Tasks;
-using iTextSharp.text;
-using System.IO;
+using ITextExtractionStrategy = iText.Kernel.Pdf.Canvas.Parser.Listener.ITextExtractionStrategy;
 
 namespace testingConvertPDFfile
 {
@@ -16,12 +13,13 @@ namespace testingConvertPDFfile
         {
             StringBuilder text = new StringBuilder();
 
-            PdfReader pdfReader = new PdfReader(pathPDF);
+            ITextExtractionStrategy strategy = new iText.Kernel.Pdf.Canvas.Parser.Listener.SimpleTextExtractionStrategy();
 
-            ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
-            string currentText = PdfTextExtractor.GetTextFromPage(pdfReader, 1, strategy);
+            var pdfReader = new PdfReader(pathPDF);
+            var pdfDocument = new PdfDocument(pdfReader);
+            var contents = iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor.GetTextFromPage(pdfDocument.GetFirstPage());
 
-            return currentText;
+            return contents;
         }
         public void NewPDFReadr(string fileName)
         {
