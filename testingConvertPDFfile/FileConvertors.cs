@@ -2,17 +2,15 @@
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
 using iTextSharp.text.pdf.parser;
 using System.Text;
-using ITextExtractionStrategy = iText.Kernel.Pdf.Canvas.Parser.Listener.ITextExtractionStrategy;
 
 namespace testingConvertPDFfile
 {
-    internal class PDFToString
+    internal class FileConvertors
     {
-        public string ReadPdfFile(string pathPDF)
+        public string PDFToText(string pathPDF)
         {
             StringBuilder text = new StringBuilder();
 
-            ITextExtractionStrategy strategy = new iText.Kernel.Pdf.Canvas.Parser.Listener.SimpleTextExtractionStrategy();
 
             var pdfReader = new PdfReader(pathPDF);
             var pdfDocument = new PdfDocument(pdfReader);
@@ -20,9 +18,19 @@ namespace testingConvertPDFfile
 
             return contents;
         }
-        public void NewPDFReadr(string fileName)
+        public string RTFToText(string path)
         {
+            System.Windows.Forms.RichTextBox rtBox = new System.Windows.Forms.RichTextBox();
 
+            string s = System.IO.File.ReadAllText(path);
+
+            //System.Windows.Forms.MessageBox.Show(s);
+
+            rtBox.Rtf = s;
+
+            string plainText = rtBox.Text;
+
+            return plainText;
         }
     }
 }

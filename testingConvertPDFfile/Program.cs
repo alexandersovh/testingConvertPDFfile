@@ -3,6 +3,10 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using RtfPipe;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Forms;
+
 
 
 namespace testingConvertPDFfile
@@ -11,32 +15,33 @@ namespace testingConvertPDFfile
     {
         static async Task Main(string[] args)
         {
+
+            DataClient dataClient = new DataClient();
             var prog = new Program();
-            var testObj = new PDFToString();
+            var convertors = new FileConvertors();
+            string resultst = "";
 
 
-            //Документ Microsoft Word.pdf//Заявление ПД221018045.pdf
-            string path = "C:\\Users\\aa.sivohin\\Desktop\\лаба\\Заявление ЮБ230106001.pdf";
-            string pathTo = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\output1.txt";
+            //Документ Microsoft Word.pdf//no/Заявление ПД221018045.pdf//юл/Заявление ПЖ221026008.pdf//фл/Заявление ЮБ221022001.pdf
+            //длиное/Заявление ПЖ221018001.pdf
+            string pathPDF = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\Заявление ПЖ221018001.pdf";
+            string pathRTF = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\ЛФ220929041_21.rtf";
+            string pathRTFToFile = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\Output.txt";
 
-            string result = testObj.ReadPdfFile(path);
-            Console.WriteLine(result);
+            Console.WriteLine(convertors.PDFToText(pathPDF));
             Console.ReadKey();
-        }
-        public string Convert(Stream stream)
-        {
-            stream.Position = 0;
-            string rtf = string.Empty;
-            using (StreamReader sr = new StreamReader(stream))
+            Console.Clear();
+            Console.WriteLine(convertors.RTFToText(pathRTF));
+            Console.ReadKey();
+            Console.Clear();
+
+
+            foreach (var summator in dataClient.ZVFiltr(pathPDF))
             {
-                rtf = sr.ReadToEnd();
+                resultst = resultst + "\n" + summator;
             }
-            // Эта строчка необходима для работы RtfPipe в Core 
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            // С помощью либы RtfPipe создаем html
-            var html = Rtf.ToHtml(rtf);
-            // очищаем html от лишних тегов и атрибутов, возвращем готовую xml
-            return ClearHtml(html);
+            Console.WriteLine(resultst);
+            Console.ReadKey();
         }
     }
 }
