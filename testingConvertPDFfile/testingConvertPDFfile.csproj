@@ -143,7 +143,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColumBilder.cs" />
     <Compile Include="FileConvertors.cs" />
     <Compile Include="DataClient.cs" />
     <Compile Include="Program.cs" />

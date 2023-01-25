@@ -36,7 +36,7 @@ namespace testingConvertPDFfile
             //Console.Clear();
 
 
-            MatchCollection clientData = dataClient.ZVToString(convertors.PDFToText(pathPDF).ToString());
+            MatchCollection clientData = dataClient.ZVToString(convertors.PDFToText(pathPDF).ToString()); //print string with data in PDF file
             if (clientData.Count > 0)
             {
                 foreach (Match cd in clientData)
