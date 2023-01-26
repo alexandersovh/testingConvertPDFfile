@@ -25,18 +25,28 @@ namespace testingConvertPDFfile
             //Документ Microsoft Word.pdf//no/Заявление ПД221018045.pdf//юл/Заявление ПЖ221026008.pdf//фл/Заявление ЮБ221022001.pdf
             //длиное/Заявление ПЖ221018001.pdf
             string pathPDF = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\Заявление ЮБ221022001.pdf";
-            string pathRTF = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\ЛФ220929041_21.rtf";
+            string pathRTF = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\ПГ220923009_48.rtf"; //фл//ПГ220923009_48.rtf
             string pathRTFToFile = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\Output.txt";
 
             //Console.WriteLine(convertors.PDFToText(pathPDF));
             //Console.ReadKey();
             //Console.Clear();
-            //Console.WriteLine(convertors.RTFToText(pathRTF));
-            //Console.ReadKey();
-            //Console.Clear();
+            Console.WriteLine(convertors.RTFToText(pathRTF));
+            Console.ReadKey();
+            Console.Clear();
 
 
-            MatchCollection clientData = dataClient.ZVToString(convertors.PDFToText(pathPDF).ToString()); //print string with data in PDF file
+            //MatchCollection clientData = dataClient.ZVToString(convertors.PDFToText(pathPDF).ToString()); //print string with data in PDF file
+            //if (clientData.Count > 0)
+            //{
+            //    foreach (Match cd in clientData)
+            //        Console.WriteLine(cd.Value);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Совпадений не найдено");
+            //}
+            MatchCollection clientData = dataClient.UPDToEndData(convertors.RTFToText(pathRTF).ToString()); //print string with data in PDF file
             if (clientData.Count > 0)
             {
                 foreach (Match cd in clientData)
@@ -46,7 +56,8 @@ namespace testingConvertPDFfile
             {
                 Console.WriteLine("Совпадений не найдено");
             }
-            Console.WriteLine("Yhooooo");
+
+                Console.WriteLine("Yhooooo");
             Console.ReadKey();
         }
     }
