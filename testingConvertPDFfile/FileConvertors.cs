@@ -24,8 +24,6 @@ namespace testingConvertPDFfile
 
             string s = System.IO.File.ReadAllText(path);
 
-            //System.Windows.Forms.MessageBox.Show(s);
-
             rtBox.Rtf = s;
 
             string plainText = rtBox.Text;

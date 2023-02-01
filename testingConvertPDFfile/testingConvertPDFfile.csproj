@@ -145,6 +145,8 @@
   <ItemGroup>
     <Compile Include="FileConvertors.cs" />
     <Compile Include="DataClient.cs" />
+    <Compile Include="InputUPDstring.cs" />
+    <Compile Include="InputZVstring.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
