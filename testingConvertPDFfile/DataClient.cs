@@ -80,15 +80,18 @@ namespace testingConvertPDFfile
             }
         }
         
-        public MatchCollection UPDToEndData(string stringText)
+        public InputUPDstring UPDToEndData(string path)
         {
-            List<string> values = new List<string>();
+            FileConvertors convertors = new FileConvertors();
+            string stringText = convertors.PDFToText(path).ToString();
+            string dateTime = Convert.ToString(File.GetCreationTime(path));
+
             Regex innCheck = new Regex(@"(?<=\sИНН/КПП покупателя\s+)\d+(?=.+\s+Валюта)");
             MatchCollection innChecker = innCheck.Matches(stringText);
 
 
             if (innChecker.Count > 0)
-            {
+            { }
 
                 string inn = Convert.ToString(innChecker[0]);
                 if (inn.Length == 10)
@@ -104,7 +107,7 @@ namespace testingConvertPDFfile
                         FaileDate = Convert.ToString(colum[1]),
                         АttorneyMen = "?", АttorneyFin = "?" 
                     };
-                    return colum;
+                    return UPDstring;
                 }
                 else
                 {
@@ -120,14 +123,8 @@ namespace testingConvertPDFfile
                         АttorneyMen = "-",
                         АttorneyFin = "-"
                     };
-                    return colum;
+                    return UPDstring;
                 }
             }
-            else
-            {
-                return innChecker;
-            }
-
-        }
     }
 }
