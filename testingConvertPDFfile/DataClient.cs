@@ -30,7 +30,7 @@ namespace testingConvertPDFfile
             }
             return baseString;
         }
-        public MatchCollection ZVToEndData(string path)
+        public InputZVstring ZVToEndData(string path)
         {
             FileConvertors convertors = new FileConvertors();
             string stringText= convertors.PDFToText(path).ToString();
@@ -44,7 +44,7 @@ namespace testingConvertPDFfile
                 string inn = Convert.ToString(innChecker[0]);
                 if (inn.Length == 10)
                 {
-                    Regex ZVdata = new Regex(@"(?<=Наименование организации\s)((.*\s)*?)(?=Город)|(?<=ИНН.)\d{10}|(?<=КПП.)\d{9}|(?<=№.)\D\D\d{9}|(?<=Фамилия\s(\w*\s){2})(\w*.){3}");
+                    Regex ZVdata = new Regex(@"(?<=Наименование организации\s)((.*)*?)(?=\sГород)|(?<=ИНН.)\d{10}|(?<=КПП.)\d{9}|(?<=№.)\D\D\d{9}|(?<=Фамилия\s(\w*\s){2})(\w*.){3}");
                     //Regex testing = new Regex(@""); //testing regex, delit this
                     MatchCollection colum = ZVdata.Matches(stringText);
                     InputZVstring zVstring = new InputZVstring 
@@ -56,7 +56,7 @@ namespace testingConvertPDFfile
                         FaileDate = dateTime,
                         FIO = Convert.ToString(colum[1])
                     };
-                    return colum;
+                    return zVstring;
                 }
                 else
                 {
@@ -71,12 +71,12 @@ namespace testingConvertPDFfile
                         FaileDate = dateTime,
                         FIO = Convert.ToString(colum[1])
                     };
-                    return colum;
+                    return zVstring;
                 }
             }
             else
             {
-                return innChecker;
+                return null;
             }
         }
         

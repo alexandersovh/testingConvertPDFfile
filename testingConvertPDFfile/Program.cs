@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.IO;
+using System.Collections;
 using System.Threading.Tasks;
 using RtfPipe;
 using System.Windows.Controls;
@@ -19,17 +20,30 @@ namespace testingConvertPDFfile
             DataClient dataClient = new DataClient();
             var prog = new Program();
             var convertors = new FileConvertors();
-            var exel
-            var reportExcel = new DisplayToExcel().CreateExel();
-
+            var ZVcollect = new GetFiles();
 
             string pathPDF = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\Заявление ПЖ221026008.pdf";
             string pathRTF = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\ПГ220923009_48.rtf"; //фл//ПГ220923009_48.rtf //юл//ЛФ220929041_21.rtf
             string pathRTFToFile = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\Output.txt";
 
+            var ZVcol = GetFiles("C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\");
+
+            var dataZV = new DataClient().ZVToEndData(pathPDF);
+            var listRow = new DisplayToExcel(); 
+            foreach ( var convertor in convertors ) 
+            {
+
+                listRow.CreateList(dataZV);
+
+            }
+            
+
+            
+
+            var reportExcel = new DisplayToExcel().CreateExel(listRow.listForExel);
 
 
-            File.WriteAllBytes("C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\Report1.xlsx", reportExcel);
+            File.WriteAllBytes("C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория\\Report2.xlsx", reportExcel);
         }
     }
 }
