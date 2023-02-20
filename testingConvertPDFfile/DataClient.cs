@@ -45,7 +45,6 @@ namespace testingConvertPDFfile
                 if (inn.Length == 10)
                 {
                     Regex ZVdata = new Regex(@"(?<=Наименование организации\s)((.*)*?)(?=\sГород)|(?<=ИНН.)\d{10}|(?<=КПП.)\d{9}|(?<=№.)\D\D\d{9}|(?<=Фамилия\s(\w*\s){2})(\w*.){3}");
-                    //Regex testing = new Regex(@""); //testing regex, delit this
                     MatchCollection colum = ZVdata.Matches(stringText);
                     InputZVstring zVstring = new InputZVstring 
                     { 

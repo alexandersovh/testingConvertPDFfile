@@ -11,7 +11,7 @@ namespace testingConvertPDFfile
             StringBuilder text = new StringBuilder();
 
 
-            var pdfReader = new PdfReader(pathPDF);
+            PdfReader pdfReader = new PdfReader(pathPDF);
             var pdfDocument = new PdfDocument(pdfReader);
             var contents = iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor.GetTextFromPage(pdfDocument.GetFirstPage());
 
