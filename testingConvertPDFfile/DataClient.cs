@@ -19,7 +19,6 @@ namespace testingConvertPDFfile
         {
             FileConvertors convertors = new FileConvertors();
             string baseString;
-            string[] fileString;
             if (path.EndsWith("pdf"))
             {
                 baseString = convertors.PDFToText(path);
@@ -91,7 +90,6 @@ namespace testingConvertPDFfile
 
             if (innChecker.Count > 0)
             {
-
                 string inn = Convert.ToString(innChecker[0]);
                 if (inn.Length == 10)
                 {
