@@ -12,7 +12,7 @@ namespace testingConvertPDFfile
         public string INN { get; set; }
         public string KPP { get; set; }
         public string UPDNuber { get; set; }
-        public string FaileDate { get; set; }
+        public string UPDDate { get; set; }
         public string АttorneyMen { get; set; }
         public string АttorneyFin { get; set; }
     }
