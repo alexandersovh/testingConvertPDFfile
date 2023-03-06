@@ -21,9 +21,9 @@ namespace testingConvertPDFfile
             var convertion = new Controller();
             DistributionFail workFail = new DistributionFail();
             Console.WriteLine("введите фаил с данными");
-            string folderPath = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория";  //Console.ReadLine();
+            string folderPath = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория";  //Console.ReadLine(); //времено
             Console.WriteLine("введите фаил куда копировать или Enter");
-            string muveToFail = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаба_2";  //Console.ReadLine();
+            string muveToFail = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаба_2";  //Console.ReadLine(); //времменно
             string firstNameFail = "\\Отчеты.xlsx";
             if (muveToFail == "")
             {
