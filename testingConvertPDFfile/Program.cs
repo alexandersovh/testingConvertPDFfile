@@ -17,17 +17,31 @@ namespace testingConvertPDFfile
     {
         static async Task Main(string[] args)
         {
+            var CreatExel = new Controller();
+            var convertion = new Controller();
             DistributionFail workFail = new DistributionFail();
             Console.WriteLine("введите фаил с данными");
-            string folderPath = Console.ReadLine();
-            Console.WriteLine("введите фаил куда копировать");
-            string muveToFail = Console.ReadLine();
+            string folderPath = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаборатрория";  //Console.ReadLine();
+            Console.WriteLine("введите фаил куда копировать или Enter");
+            string muveToFail = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\лаба_2";  //Console.ReadLine();
+            string firstNameFail = "\\Отчеты.xlsx";
+            if (muveToFail == "")
+            {
+                muveToFail = folderPath;
+            }
 
-            workFail.FiltrFail(folderPath, muveToFail); // рабочтий код
+            workFail.FiltrFail(folderPath, muveToFail);
+
+            string[] folderFolders = Directory.GetDirectories(muveToFail);
+
+            foreach (string folder in folderFolders)
+            {
+                convertion.InputControllers(folder, muveToFail + firstNameFail);
+            }
+            
+
+             // рабочтий код
             Console.WriteLine("I finish program");
-
-            var CreatExel = new Controller();
-            CreatExel.InputControllers();
         }
     }
 }

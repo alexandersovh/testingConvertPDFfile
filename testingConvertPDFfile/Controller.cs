@@ -9,25 +9,45 @@ namespace testingConvertPDFfile
 {
     internal class Controller
     {
-        public void InputControllers(string pathPDFfolder, string pthRTFfolder, string resultExelFile)
+        public void InputControllers(string pathfolder, string resultExelFile)
         {
-            string[] pathPDFs = Directory.GetFiles(pathPDFfolder);
-            string[] pathUPDs = Directory.GetFiles(pthRTFfolder);
-
-            var listRowPDF = new DisplayToExcel();
             var listRowUPD = new DisplayToExcel();
+            var listRowPDF = new DisplayToExcel();
+            string pathPDFfolder;
+            string pthRTFfolder;
+            var outputeData = new DisplayToExcel();
+            byte[] report;
 
-            foreach (var PDFPath in pathPDFs)
+            if (pathfolder.Contains("УПД"))
             {
-                ReportBilderPDFSheet(listRowPDF, PDFPath);
-            }
-            foreach (var UPDPath in pathUPDs)
-            {
-                ReportBilderUPTSheet(listRowUPD, UPDPath);
-            }
+                pthRTFfolder = pathfolder;
+                string[] pathUPDs = Directory.GetFiles(pthRTFfolder);
 
-            var report = new DisplayToExcel().CreateSheetPDF(listRowPDF.listForPDFExel, listRowUPD.listForUPDExel);
-            File.WriteAllBytes(resultExelFile, report);
+                foreach (var UPDPath in pathUPDs)
+                {
+                    ReportBilderUPTSheet(listRowUPD, UPDPath);
+                }
+                report = outputeData.CreateSheet(listRowPDF.listForPDFExel, listRowUPD.listForUPDExel);
+
+                File.WriteAllBytes(resultExelFile, report);
+            }
+            else if(pathfolder.Contains("Заявление"))
+            {
+                pathPDFfolder = pathfolder;
+                string[] pathPDFs = Directory.GetFiles(pathPDFfolder);
+
+                
+                foreach (var PDFPath in pathPDFs)
+                {
+                    ReportBilderPDFSheet(listRowPDF, PDFPath);
+                }
+                report = outputeData.CreateSheet(listRowPDF.listForPDFExel, listRowUPD.listForUPDExel);
+                File.WriteAllBytes(resultExelFile, report);
+            }
+            else { return; }
+
+            //var report = new DisplayToExcel().CreateSheetPDF(listRowPDF.listForPDFExel, listRowUPD.listForUPDExel);
+            //File.WriteAllBytes(resultExelFile, report);
         }
         static public void ReportBilderPDFSheet(DisplayToExcel listRowPDF, string pathPDFfail)
         {
