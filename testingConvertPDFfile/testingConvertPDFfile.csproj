@@ -149,14 +149,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckFailBilder.cs" />
+    <Compile Include="MоveFile\CheckFailBilder.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="DisplayToExcel.cs" />
-    <Compile Include="DistributionFail.cs" />
-    <Compile Include="FileConvertors.cs" />
-    <Compile Include="DataClient.cs" />
-    <Compile Include="InputUPDstring.cs" />
-    <Compile Include="InputZVstring.cs" />
+    <Compile Include="MоveFile\DisplayToExcel.cs" />
+    <Compile Include="MоveFile\DistributionFail.cs" />
+    <Compile Include="ConvertorFaile\FileConvertors.cs" />
+    <Compile Include="ConvertorFaile\DataClient.cs" />
+    <Compile Include="ConvertorFaile\InputUPDstring.cs" />
+    <Compile Include="ConvertorFaile\InputZVstring.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

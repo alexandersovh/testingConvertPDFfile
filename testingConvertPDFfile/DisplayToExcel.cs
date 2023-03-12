@@ -27,28 +27,14 @@ namespace testingConvertPDFfile
         {
             listForUPDExel.Add(listData);
         }
-
-        public byte[] CreateSheet(List<InputZVstring> reportPDF, List<InputUPDstring> reportUPD)
+        public void creatorTablePDF(List<InputZVstring> report, ExcelWorksheet sheet)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             var package = new ExcelPackage();
             DateTime thisDay = DateTime.Today;
-
-            
-            ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет сертификат");
-            ExcelWorksheet sheetUPD = package.Workbook.Worksheets.Add("Отчет УПД");
-
-            creatorTablePDF(sheet, reportPDF);
-            CreateSheetUPD(sheetUPD, reportUPD);
-
-            sheet.Protection.IsProtected = true;
-            sheetUPD.Protection.IsProtected = true;
-            return package.GetAsByteArray();
-        }
-        public void creatorTablePDF(ExcelWorksheet sheet, List<InputZVstring> report)
-        {
-            DateTime thisDay = DateTime.Today;
-
+            int counter = 1;
+            int row = 5;
+            int column = 1;
 
             sheet.Cells["A1:G1"].Merge = true;
             sheet.Cells["A1:G1"].Value = "Внутренняя опись документов, предоставленных для оказания услуг УЦ";
@@ -65,10 +51,6 @@ namespace testingConvertPDFfile
             sheet.Cells["F4"].Value = "Дата заявления";
             sheet.Cells["G4"].Value = "ФИО";
 
-
-            int counter = 1;
-            int row = 5;
-            int column = 1;
             foreach (var item in report)
             {
                 sheet.Cells[row, column].Value = counter;
@@ -95,8 +77,10 @@ namespace testingConvertPDFfile
             sheet.Cells[row + 11, 1].Value = "Дата";
             sheet.Cells[row + 11, 2].Value = thisDay.ToString("d");
         }
-        public void CreateSheetUPD(ExcelWorksheet sheet, List<InputUPDstring> report)
+        public void CreateSheetUPD(List<InputUPDstring> report, ExcelWorksheet sheet)
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            var package = new ExcelPackage();
             DateTime thisDay = DateTime.Today;
 
             sheet.Cells["A1:H1"].Merge = true;
@@ -125,6 +109,7 @@ namespace testingConvertPDFfile
             int counter = 1;
             int row = 5;
             int column = 1;
+
             foreach (var item in report)
             {
                 sheet.Cells[row, column].Value = counter;
