@@ -17,15 +17,15 @@ namespace testingConvertPDFfile
 
                 if (filename.EndsWith(".rtf"))
                 {
-                    File.Copy(filename, checkFail.CheckFail(muveToFail, "УПД", dataCteat) + "\\" + Path.GetFileName(filename));
+                    File.Move(filename, checkFail.CheckFail(muveToFail, "УПД", dataCteat) + "\\" + Path.GetFileName(filename));
                 }
                 else if (filename.Contains("Заявление"))
                 {
-                    File.Copy(filename, checkFail.CheckFail(muveToFail, "Заявление", dataCteat) + "\\" + Path.GetFileName(filename));
+                    File.Move(filename, checkFail.CheckFail(muveToFail, "Заявление", dataCteat) + "\\" + Path.GetFileName(filename));
                 }
                 else if (filename.Contains("statement_attachment ") || filename.Contains("confirm_"))
                 {
-                    File.Copy(filename, checkFail.CheckFail(muveToFail, "trashcan", dataCteat) + "\\" + Path.GetFileName(filename));
+                    File.Move(filename, checkFail.CheckFail(muveToFail, "trashcan", dataCteat) + "\\" + Path.GetFileName(filename));
                 }
             }
         }

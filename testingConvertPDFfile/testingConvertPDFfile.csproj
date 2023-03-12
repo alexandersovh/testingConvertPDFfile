@@ -151,7 +151,7 @@
   <ItemGroup>
     <Compile Include="MоveFile\CheckFailBilder.cs" />
     <Compile Include="Controller.cs" />
-    <Compile Include="MоveFile\DisplayToExcel.cs" />
+    <Compile Include="DisplayToExcel.cs" />
     <Compile Include="MоveFile\DistributionFail.cs" />
     <Compile Include="ConvertorFaile\FileConvertors.cs" />
     <Compile Include="ConvertorFaile\DataClient.cs" />
