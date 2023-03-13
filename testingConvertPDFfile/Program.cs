@@ -39,10 +39,6 @@ namespace testingConvertPDFfile
             string[] folderFolders = Directory.GetDirectories(muveToFail);
 
             convertion.InputControllers(folderFolders, muveToFail + firstNameFail);
-
-            Console.WriteLine("I finish program");
-            Console.ReadLine();
         }
     }
 }
-

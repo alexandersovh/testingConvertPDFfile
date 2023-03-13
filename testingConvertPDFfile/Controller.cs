@@ -28,12 +28,13 @@ namespace testingConvertPDFfile
             ExcelPackage package = new ExcelPackage();
             DateTime thisDay = DateTime.Today;
             byte[] report;
-
+            int sheetCounter = 0;
             foreach (string folder in pathfolder)
             {
                 if (folder.Contains("УПД"))
                 {
-                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет УПД" + thisDay.ToString("d"));
+                    sheetCounter++;
+                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет УПД" + thisDay.ToString("d") + sheetCounter.ToString());
 
                     pthRTFfolder = folder;
                     string[] pathUPDs = Directory.GetFiles(pthRTFfolder);
@@ -49,7 +50,7 @@ namespace testingConvertPDFfile
                 {
 
 
-                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет сертификатов" + thisDay.ToString("d"));
+                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет сертификатов" + thisDay.ToString("d") + sheetCounter.ToString());
 
                     pathPDFfolder = folder;
                     string[] pathPDFs = Directory.GetFiles(pathPDFfolder);
