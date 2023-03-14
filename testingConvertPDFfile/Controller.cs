@@ -69,16 +69,35 @@ namespace testingConvertPDFfile
 
             File.WriteAllBytes(resultExelFile, report);
         }
-        static public void ReportBilderPDFSheet(DisplayToExcel listRowPDF, string pathPDFfail)
+        static private void ReportBilderPDFSheet(DisplayToExcel listRowPDF, string pathPDFfail)
         {
             var dataPDF = new DataClient().ZVToEndData(pathPDFfail);
             listRowPDF.CreateListPDF(dataPDF);
         }
-        static public void ReportBilderUPTSheet(DisplayToExcel listRowUPD, string pthRTFfile)
+        static private void ReportBilderUPTSheet(DisplayToExcel listRowUPD, string pthRTFfile)
         {
             var dataUPD = new DataClient().UPDToEndData(pthRTFfile);
             listRowUPD.CreateListUPD(dataUPD);
         }
+        public void MuveToFileВistributor()
+        {
+            DistributionFail workFail = new DistributionFail();
+
+            Console.WriteLine("введите фаил с данными");
+            string folderPath = Console.ReadLine(); //времено
+            Console.WriteLine("введите фаил куда копировать или Enter");
+            string muveToFail = Console.ReadLine(); //времменно
+            string firstNameFail = "\\Отчеты.xlsx";
+            if (muveToFail == "")
+            {
+                muveToFail = folderPath;
+            }
+
+            workFail.FiltrFail(folderPath, muveToFail);
+
+            string[] folderFolders = Directory.GetDirectories(muveToFail);
+            return folderFolders;
+        }
+
     }
 }
-

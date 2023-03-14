@@ -21,20 +21,19 @@ namespace testingConvertPDFfile
     {
         static async Task Main(string[] args)
         {
-            var CreatExel = new Controller();
-            var convertion = new Controller();
-            DistributionFail workFail = new DistributionFail();
-            Console.WriteLine("введите фаил с данными");
-            string folderPath = Console.ReadLine(); //времено
-            Console.WriteLine("введите фаил куда копировать или Enter");
-            string muveToFail = Console.ReadLine(); //времменно
-            string firstNameFail = "\\Отчеты.xlsx";
-            if (muveToFail == "")
+            Controller convertion = new Controller();
+            Console.WriteLine("введлите команду:\n f - фильтрация файлов;\n r - создание отчета exel");
+            var cheker = "";
+            switch (cheker)
             {
-                muveToFail = folderPath;
+                case "f":
+
+                    break;
+                case "r":
+                    break;
+                case
             }
 
-            workFail.FiltrFail(folderPath, muveToFail);
 
             string[] folderFolders = Directory.GetDirectories(muveToFail);
 
