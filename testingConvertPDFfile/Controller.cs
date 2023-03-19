@@ -69,12 +69,12 @@ namespace testingConvertPDFfile
 
             File.WriteAllBytes(resultExelFile, report);
         }
-        static public void ReportBilderPDFSheet(DisplayToExcel listRowPDF, string pathPDFfail)
+        static private void ReportBilderPDFSheet(DisplayToExcel listRowPDF, string pathPDFfail)
         {
             var dataPDF = new DataClient().ZVToEndData(pathPDFfail);
             listRowPDF.CreateListPDF(dataPDF);
         }
-        static public void ReportBilderUPTSheet(DisplayToExcel listRowUPD, string pthRTFfile)
+        static private void ReportBilderUPTSheet(DisplayToExcel listRowUPD, string pthRTFfile)
         {
             var dataUPD = new DataClient().UPDToEndData(pthRTFfile);
             listRowUPD.CreateListUPD(dataUPD);
