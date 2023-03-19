@@ -31,25 +31,24 @@ namespace testingConvertPDFfile
             {
                 try
                 {
-                Console.WriteLine("Выбирите действие:\n 'f' - чтобы отфильтровать файлы,\n 'r' - создать Exel файл с отчетом, \n 'stope' - для акрытия программы");
-                operation = Console.ReadLine();
+                    Console.WriteLine("Выбирите действие:\n 'f' - чтобы отфильтровать файлы,\n 'r' - создать Exel файл с отчетом, \n 'stope' - для акрытия программы");
+                    operation = Console.ReadLine();
 
-                switch (operation)
-                {
-                    case "f":
-                        baze = controller.FailsForWork();
-                        workFail.FiltrFail(baze.FileWithData, baze.FileMuveTo);
-                        break;
-                    case "r":
-                        baze = controller.FailsForWork();
-                        convertion.InputControllers(baze.FileMuveTo, baze.FileReport);
-                        break;
-                    case "stope":
-                        Console.WriteLine("закрытие программы");
-                        Console.ReadKey();
-                        break;
-                }
-
+                    switch (operation)
+                    {
+                        case "f":
+                            baze = controller.FailsForWork();
+                            workFail.FiltrFail(baze.FileWithData, baze.FileMuveTo);
+                            break;
+                        case "r":
+                            baze = controller.FailsForWork();
+                            convertion.InputControllers(baze.FileMuveTo, baze.FileReport);
+                            break;
+                        case "stope":
+                            Console.WriteLine("закрытие программы");
+                            Console.ReadKey();
+                            break;
+                    }
                 }
                 catch
                 {
