@@ -17,7 +17,7 @@ namespace testingConvertPDFfile
 {
     internal class Controller
     {
-        public void InputControllers(string[] pathfolder, string resultExelFile)
+        public void InputControllers(string pathfolder, string resultExelFile)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             var listRowUPD = new DisplayToExcel();
@@ -29,7 +29,9 @@ namespace testingConvertPDFfile
             DateTime thisDay = DateTime.Today;
             byte[] report;
             int sheetCounter = 0;
-            foreach (string folder in pathfolder)
+            string[] PathFailList = Directory.GetDirectories(pathfolder);
+
+            foreach (string folder in PathFailList)
             {
                 if (folder.Contains("УПД"))
                 {
@@ -87,12 +89,12 @@ namespace testingConvertPDFfile
             string fileWithData = Console.ReadLine(); //C:\Users\alexandr\OneDrive\Рабочий стол\лаборатрория
             Console.WriteLine("введити фаил куда сохранять или Enter");
             string fileMuveTo = Console.ReadLine();
-            string fileReport = "\\отчет от " + thisDay.ToString("d") + ".xls";
-
             if (fileMuveTo == "")
             {
                 fileMuveTo = fileWithData;
             }
+
+            string fileReport = fileMuveTo + "\\отчет от " + thisDay.ToString("d") + ".xlsx";
 
             WorkFile fileBaze = new WorkFile
             {
