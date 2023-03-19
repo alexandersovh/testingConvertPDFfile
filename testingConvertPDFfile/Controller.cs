@@ -79,6 +79,28 @@ namespace testingConvertPDFfile
             var dataUPD = new DataClient().UPDToEndData(pthRTFfile);
             listRowUPD.CreateListUPD(dataUPD);
         }
+        public WorkFile FailsForWork()
+        {
+            DateTime thisDay = DateTime.Today;
+
+            Console.WriteLine("введити иммя папки с файлами для обработки");
+            string fileWithData = Console.ReadLine(); //C:\Users\alexandr\OneDrive\Рабочий стол\лаборатрория
+            Console.WriteLine("введити фаил куда сохранять или Enter");
+            string fileMuveTo = Console.ReadLine();
+            string fileReport = "\\отчет от " + thisDay.ToString("d") + ".xls";
+
+            if (fileMuveTo == "")
+            {
+                fileMuveTo = fileWithData;
+            }
+
+            WorkFile fileBaze = new WorkFile
+            {
+                FileWithData = fileWithData,
+                FileMuveTo = fileMuveTo,
+                FileReport = fileReport
+            };
+            return fileBaze;
+        }
     }
 }
-
