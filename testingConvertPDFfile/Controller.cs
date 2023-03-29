@@ -32,13 +32,15 @@ namespace testingConvertPDFfile
             string[] PathFailList = Directory.GetDirectories(pathfolder);
 
             foreach (string folder in PathFailList)
-            {
+            {   
+                sheetCounter++;
                 if (folder.Contains("УПД"))
                 {
-                    sheetCounter++;
-                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет УПД" + thisDay.ToString("d") + sheetCounter.ToString());
+                    
+                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет УПД " + thisDay.ToString("d") + sheetCounter.ToString());
 
                     pthRTFfolder = folder;
+
                     string[] pathUPDs = Directory.GetFiles(pthRTFfolder);
 
                     foreach (var UPDPath in pathUPDs)
@@ -51,18 +53,16 @@ namespace testingConvertPDFfile
                 else if (folder.Contains("Заявление"))
                 {
 
-
-                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет сертификатов" + thisDay.ToString("d") + sheetCounter.ToString());
+                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет сертификатов " + thisDay.ToString("d") + sheetCounter.ToString());
 
                     pathPDFfolder = folder;
-                    string[] pathPDFs = Directory.GetFiles(pathPDFfolder);
 
+                    string[] pathPDFs = Directory.GetFiles(pathPDFfolder);
 
                     foreach (var PDFPath in pathPDFs)
                     {
                         ReportBilderPDFSheet(listRowPDF, PDFPath);
                     }
-
                     outputeData.creatorTablePDF(listRowPDF.listForPDFExel, sheet);
                 }
             }

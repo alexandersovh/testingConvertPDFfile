@@ -29,8 +29,8 @@ namespace testingConvertPDFfile
 
             while (operation != "stope")
             {
-                try
-                {
+                //try
+                //{
                     Console.WriteLine("Выбирите действие:\n 'f' - чтобы отфильтровать файлы,\n 'r' - создать Exel файл с отчетом, \n 'stope' - для акрытия программы");
                     operation = Console.ReadLine();
 
@@ -49,11 +49,11 @@ namespace testingConvertPDFfile
                             Console.ReadKey();
                             break;
                     }
-                }
-                catch
-                {
-                    Console.WriteLine("некорректный путь");
-                }
+                //}
+                //catch
+                //{
+                //    Console.WriteLine("некорректный путь");
+                //}
             }
         }
     }

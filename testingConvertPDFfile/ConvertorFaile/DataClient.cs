@@ -15,20 +15,20 @@ namespace testingConvertPDFfile
 {
     internal class DataClient
     {
-        private string StringFiltr(string path)
-        {
-            FileConvertors convertors = new FileConvertors();
-            string baseString;
-            if (path.EndsWith("pdf"))
-            {
-                baseString = convertors.PDFToText(path);
-            }
-            else
-            {
-                baseString = convertors.RTFToText(path);
-            }
-            return baseString;
-        }
+        //private string StringFiltr(string path)
+        //{
+        //    FileConvertors convertors = new FileConvertors();
+        //    string baseString;
+        //    if (path.EndsWith("pdf"))
+        //    {
+        //        baseString = convertors.PDFToText(path);
+        //    }
+        //    else
+        //    {
+        //        baseString = convertors.RTFToText(path);
+        //    }
+        //    return baseString;
+        //}
         public InputZVstring ZVToEndData(string path)
         {
             FileConvertors convertors = new FileConvertors();
@@ -37,9 +37,8 @@ namespace testingConvertPDFfile
             Regex innCheck = new Regex(@"(?<=ИНН.)\d+");
             MatchCollection innChecker = innCheck.Matches(stringText);
 
-            if (innChecker.Count > 0)
-            {
-
+            //if (innChecker.Count > 0)
+            //{
                 string inn = Convert.ToString(innChecker[0]);
                 if (inn.Length == 10)
                 {
@@ -71,34 +70,34 @@ namespace testingConvertPDFfile
                     };
                     return zVstring;
                 }
-            }
-            else
-            {
-                return null;
-            }
+            //}
+            //else
+            //{
+            //    return null;
+            //}
         }
 
         public InputUPDstring UPDToEndData(string path)
         {
             FileConvertors convertors = new FileConvertors();
             string stringText = convertors.RTFToText(path).ToString();
-            string dateTime = Convert.ToString(File.GetCreationTime(path));
+            //string dateTime = Convert.ToString(File.GetCreationTime(path));
 
             Regex innCheck = new Regex(@"(?<=\sИНН/КПП покупателя\s+)\d+(?=.+\s+Валюта)");
             MatchCollection innChecker = innCheck.Matches(stringText);
 
 
-            if (innChecker.Count > 0)
-            {
+            //if (innChecker.Count > 0)
+            //{
                 string inn = Convert.ToString(innChecker[0]);
                 if (inn.Length == 10)
                 {
-                    Regex ZVdata = new Regex(@"(?<=Счет-фактура.№.+)\D{2}\d{9}.\d{2}|(?<=от\s+)\d{2}.\d{2}.\d{4}\s+(?=Исправление)|(?<=Покупатель\s+)((.*\s)*?)(?=Адрес)|(?<=\sИНН/КПП покупателя\s+)\d+(?=.+\s+Валюта)|(?<=ИНН/КПП покупателя\s+\d+.)\d{9}(?=\s+Валюта)");
+                    Regex ZVdata = new Regex(@"(?<=Счет-фактура.№.+)\D{2}\d{9}.\d{2}|(?<=от\s+)\d{2}.\d{2}.\d{4}\s+(?=Исправление)|(?<=Покупатель\s+)((\S+\s+)+)(?=Адрес\s)|(?<=\sИНН/КПП покупателя\s+)\d+(?=.+\s+Валюта)|(?<=ИНН/КПП покупателя\s+\d+.)\d{9}(?=\s+Валюта)");
                     MatchCollection colum = ZVdata.Matches(stringText);
                     InputUPDstring UPDstring = new InputUPDstring
                     {
                         Name = Convert.ToString(colum[2]),
-                        INN = Convert.ToString(colum[3]),
+                        INN = Convert.ToString(inn),
                         KPP = Convert.ToString(colum[4]),
                         UPDNuber = Convert.ToString(colum[0]),
                         UPDDate = Convert.ToString(colum[1]),
@@ -109,7 +108,7 @@ namespace testingConvertPDFfile
                 }
                 else
                 {
-                    Regex ZVdata = new Regex(@"(?<=Счет-фактура.№.+)\D{2}\d{9}.\d{2}|(?<=от\s+)\d{2}.\d{2}.\d{4}\s+(?=Исправление)|(?<=Покупатель\s*)\S+\s\S+\s\S+(?=\s+Адрес)|(?<=ИНН/КПП покупателя\s+)\d+(?=.*\s*Валюта)");
+                    Regex ZVdata = new Regex(@"(?<=Счет-фактура.№.+)\D{2}\d{9}.\d{2}|(?<=от\s+)\d{2}.\d{2}.\d{4}\s+(?=Исправление)|(?<=Покупатель\s*)\S+\s\S+\s\S+(?=\s+Адрес\s)|(?<=ИНН/КПП покупателя\s+)\d+(?=.*\s*Валюта)");
                     MatchCollection colum = ZVdata.Matches(stringText);
                     InputUPDstring UPDstring = new InputUPDstring
                     {
@@ -123,11 +122,11 @@ namespace testingConvertPDFfile
                     };
                     return UPDstring;
                 }
-            }
-            else
-            {
-                return null;
-            }
+            //}
+            //else
+            //{
+            //    return null;
+            //}
         }
     }
 }

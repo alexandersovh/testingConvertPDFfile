@@ -53,13 +53,21 @@ namespace testingConvertPDFfile
 
             foreach (var item in report)
             {
-                sheet.Cells[row, column].Value = counter;
-                sheet.Cells[row, column + 1].Value = item.Name;
-                sheet.Cells[row, column + 2].Value = item.INN;
-                sheet.Cells[row, column + 3].Value = item.KPP;
-                sheet.Cells[row, column + 5].Value = item.ZVNuber;
-                sheet.Cells[row, column + 4].Value = item.FaileDate;
-                sheet.Cells[row, column + 6].Value = item.FIO;
+                if (item == null)
+                {
+                    sheet.Cells[row, column].Value = counter;
+                    sheet.Cells[row, column + 1].Value = "undefined";
+                }
+                else
+                {
+                    sheet.Cells[row, column].Value = counter;
+                    sheet.Cells[row, column + 1].Value = item.Name;
+                    sheet.Cells[row, column + 2].Value = item.INN;
+                    sheet.Cells[row, column + 3].Value = item.KPP;
+                    sheet.Cells[row, column + 5].Value = item.ZVNuber;
+                    sheet.Cells[row, column + 4].Value = item.FaileDate;
+                    sheet.Cells[row, column + 6].Value = item.FIO;
+                }
                 row++;
                 counter++;
             }
@@ -112,14 +120,22 @@ namespace testingConvertPDFfile
 
             foreach (var item in report)
             {
-                sheet.Cells[row, column].Value = counter;
-                sheet.Cells[row, column + 1].Value = item.Name;
-                sheet.Cells[row, column + 2].Value = item.INN;
-                sheet.Cells[row, column + 3].Value = item.KPP;
-                sheet.Cells[row, column + 4].Value = item.UPDNuber;
-                sheet.Cells[row, column + 5].Value = item.UPDDate;
-                sheet.Cells[row, column + 6].Value = item.АttorneyMen;
-                sheet.Cells[row, column + 7].Value = item.АttorneyFin;
+                if (item == null)
+                {
+                    sheet.Cells[row, column].Value = counter;
+                    sheet.Cells[row, column + 1].Value = "undefined";
+                }
+                else
+                {
+                    sheet.Cells[row, column].Value = counter;
+                    sheet.Cells[row, column + 1].Value = item.Name;
+                    sheet.Cells[row, column + 2].Value = item.INN;
+                    sheet.Cells[row, column + 3].Value = item.KPP;
+                    sheet.Cells[row, column + 4].Value = item.UPDNuber;
+                    sheet.Cells[row, column + 5].Value = item.UPDDate;
+                    sheet.Cells[row, column + 6].Value = item.АttorneyMen;
+                    sheet.Cells[row, column + 7].Value = item.АttorneyFin;
+                }
                 row++;
                 counter++;
             }
