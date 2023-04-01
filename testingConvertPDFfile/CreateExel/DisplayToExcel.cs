@@ -71,7 +71,6 @@ namespace testingConvertPDFfile
                 row++;
                 counter++;
             }
-
             sheet.Cells[row + 3, 1].Value = "Итого";
             sheet.Cells[row + 3, 2].Value = Convert.ToString(counter - 1) + "()";
             sheet.Cells[row + 3, 3].Value = "комплект документов";

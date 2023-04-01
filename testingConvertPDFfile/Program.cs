@@ -30,14 +30,18 @@ namespace testingConvertPDFfile
 
             while (operation != "stope")
             {
-                Console.WriteLine("Выбирите действие:\n 'f' - чтобы отфильтровать файлы,\n 'r' - создать Exel файл с отчетом, \n Enter - для акрытия программы");
+                Console.WriteLine("Выбирите действие:\n 'fm' - чтобы отфильтровать файлы,\n 'fd' - чтобы отфильтровать файлы, \n 'r' - создать Exel файл с отчетом, \n Enter - для акрытия программы");
                 operation = Console.ReadLine();
 
                 switch (operation)
                 {
-                    case "f":
+                    case "fm":
                         baze = controller.FailsForWork();
-                        workFail.FiltrFail(baze.FileWithData, baze.FileMuveTo);
+                        workFail.FiltrFail(baze.FileWithData, baze.FileMuveTo, "m");
+                        break;
+                    case "fd":
+                        baze = controller.FailsForWork();
+                        workFail.FiltrFail(baze.FileWithData, baze.FileMuveTo, "d");
                         break;
                     case "r":
                         baze = controller.FailsForWork();

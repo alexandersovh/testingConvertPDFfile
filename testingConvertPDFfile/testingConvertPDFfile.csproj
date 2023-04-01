@@ -190,8 +190,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MоveFile\CheckFailBilder.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="DisplayToExcel.cs" />
+    <Compile Include="CreateExel\Controller.cs" />
+    <Compile Include="CreateExel\DisplayToExcel.cs" />
     <Compile Include="MоveFile\DistributionFail.cs" />
     <Compile Include="ConvertorFaile\FileConvertors.cs" />
     <Compile Include="ConvertorFaile\DataClient.cs" />

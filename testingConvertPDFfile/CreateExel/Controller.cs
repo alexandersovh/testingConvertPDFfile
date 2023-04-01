@@ -13,6 +13,7 @@ using OfficeOpenXml.Style;
 using System.Diagnostics.Metrics;
 using Excel = Microsoft.Office.Interop.Excel;
 
+
 namespace testingConvertPDFfile
 {
     internal class Controller
@@ -20,26 +21,26 @@ namespace testingConvertPDFfile
         public void InputControllers(string pathfolder, string resultExelFile)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var listRowUPD = new DisplayToExcel();
-            var listRowPDF = new DisplayToExcel();
+            DisplayToExcel listRowUPD = new DisplayToExcel();
+            DisplayToExcel listRowPDF = new DisplayToExcel();
             string pathPDFfolder;
             string pthRTFfolder;
-            var outputeData = new DisplayToExcel();
+            DisplayToExcel outputeData = new DisplayToExcel();
             ExcelPackage package = new ExcelPackage();
-            DateTime thisDay = DateTime.Today;
             byte[] report;
-            int sheetCounter = 0;
             string[] PathFailList = Directory.GetDirectories(pathfolder);
+
 
             foreach (string folder in PathFailList)
             {   
-                sheetCounter++;
+                DirectoryInfo dirN = new DirectoryInfo(folder);
                 if (folder.Contains("УПД"))
                 {
-                    
-                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет УПД " + thisDay.ToString("d") + sheetCounter.ToString());
-
                     pthRTFfolder = folder;
+
+                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет " + dirN.Name.ToString());
+
+                    
 
                     string[] pathUPDs = Directory.GetFiles(pthRTFfolder);
 
@@ -53,7 +54,7 @@ namespace testingConvertPDFfile
                 else if (folder.Contains("Заявление"))
                 {
 
-                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет сертификатов " + thisDay.ToString("d") + sheetCounter.ToString());
+                    ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет " + dirN.Name.ToString());
 
                     pathPDFfolder = folder;
 

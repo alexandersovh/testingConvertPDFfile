@@ -6,9 +6,17 @@ namespace testingConvertPDFfile
 {
     internal class CheckFailBilder
     {
-        public string CheckFail(string сheckFolderPathTo, string firstNameFail, DateTime reportingData)
-        {   
-            string nameCheker = сheckFolderPathTo + "\\" + firstNameFail + " " + reportingData.Month.ToString() + "." + reportingData.Year.ToString();
+        public string CheckFail(string сheckFolderPathTo, string firstNameFail, DateTime reportingData, string chek)
+        {
+            string nameCheker = "";
+               if (chek == "m")
+            {
+                nameCheker = сheckFolderPathTo + "\\" + firstNameFail + " " + reportingData.Month.ToString() + "." + reportingData.Year.ToString();
+            }
+               else if (chek == "d")
+            {
+                nameCheker = сheckFolderPathTo + "\\" + firstNameFail + " " + reportingData.Day.ToString()+ "." + reportingData.Month.ToString() + "." + reportingData.Year.ToString();
+            }
             string finalPath = null; // убери это нахуй, есть проверка используется в 1м условиив конце там *111
             foreach (var faile in Directory.GetFiles(сheckFolderPathTo))
             {
