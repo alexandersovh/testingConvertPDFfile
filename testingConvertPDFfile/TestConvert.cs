@@ -16,17 +16,6 @@ namespace testingConvertPDFfile
 {
     internal class TestConvert
     {
-        //public string testFileToText(string data)
-        //{
-        //    RichTextBox rtBox = new RichTextBox();
-
-
-        //    rtBox.Rtf = data;
-
-        //    string plainText = rtBox.Text;
-
-        //    return plainText;
-        //}
         public void cikleTest(string path)
         {
             string s;

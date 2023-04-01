@@ -30,8 +30,6 @@ namespace testingConvertPDFfile
 
             while (operation != "stope")
             {
-                //try
-                //{
                 Console.WriteLine("Выбирите действие:\n 'f' - чтобы отфильтровать файлы,\n 'r' - создать Exel файл с отчетом, \n Enter - для акрытия программы");
                 operation = Console.ReadLine();
 
@@ -56,11 +54,7 @@ namespace testingConvertPDFfile
                         testToText.cikleTest(path111);
                         break;
                 }
-                //}
-                //catch
-                //{
-                //    Console.WriteLine("некорректный путь");
-                //}
+
             }
         }
     }
