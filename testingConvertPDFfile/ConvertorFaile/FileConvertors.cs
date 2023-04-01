@@ -1,6 +1,8 @@
 ﻿using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Parser.Listener;
+using Net.Sgoliver.NRtfTree.Core;
 using System.Text;
+using System.Windows.Forms;
 
 namespace testingConvertPDFfile
 {
@@ -9,25 +11,18 @@ namespace testingConvertPDFfile
         public string PDFToText(string pathPDF)
         {
             StringBuilder text = new StringBuilder();
-
-
             PdfReader pdfReader = new PdfReader(pathPDF);
             var pdfDocument = new PdfDocument(pdfReader);
             var contents = iText.Kernel.Pdf.Canvas.Parser.PdfTextExtractor.GetTextFromPage(pdfDocument.GetFirstPage());
-
             return contents;
         }
         public string RTFToText(string path)
         {
-            System.Windows.Forms.RichTextBox rtBox = new System.Windows.Forms.RichTextBox();
+            RtfTree tree = new RtfTree();
 
-            string s = System.IO.File.ReadAllText(path);
+            tree.LoadRtfFile(path);
 
-            rtBox.Rtf = s;
-
-            string plainText = rtBox.Text;
-
-            return plainText;
+            return tree.Text;
         }
     }
 }
