@@ -12,7 +12,7 @@ using RichTextBox = System.Windows.Forms.RichTextBox;
 using SautinSoft.Document;
 using Net.Sgoliver.NRtfTree.Core;
 
-namespace testingConvertPDFfile
+namespace PidPipen
 {
     internal class TestConvert
     {

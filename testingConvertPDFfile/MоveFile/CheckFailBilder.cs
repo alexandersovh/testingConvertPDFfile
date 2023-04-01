@@ -2,7 +2,7 @@
 using System.IO;
 
 
-namespace testingConvertPDFfile
+namespace PidPipen
 {
     internal class CheckFailBilder
     {

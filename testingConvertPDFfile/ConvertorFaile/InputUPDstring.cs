@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace testingConvertPDFfile
+namespace PidPipen
 {
     internal class InputUPDstring
     {

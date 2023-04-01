@@ -4,7 +4,7 @@ using Net.Sgoliver.NRtfTree.Core;
 using System.Text;
 using System.Windows.Forms;
 
-namespace testingConvertPDFfile
+namespace PidPipen
 {
     internal class FileConvertors
     {

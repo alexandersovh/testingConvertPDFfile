@@ -13,7 +13,7 @@ using System.IO.Packaging;
 using Microsoft.Office.Interop.Excel;
 
 
-namespace testingConvertPDFfile
+namespace PidPipen
 {
     internal class DisplayToExcel
     {
@@ -30,7 +30,6 @@ namespace testingConvertPDFfile
         public void creatorTablePDF(List<InputZVstring> report, ExcelWorksheet sheet)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var package = new ExcelPackage();
             DateTime thisDay = DateTime.Today;
             int counter = 1;
             int row = 5;

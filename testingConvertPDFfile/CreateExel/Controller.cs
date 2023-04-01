@@ -14,7 +14,7 @@ using System.Diagnostics.Metrics;
 using Excel = Microsoft.Office.Interop.Excel;
 
 
-namespace testingConvertPDFfile
+namespace PidPipen
 {
     internal class Controller
     {
@@ -36,12 +36,10 @@ namespace testingConvertPDFfile
                 DirectoryInfo dirN = new DirectoryInfo(folder);
                 if (folder.Contains("УПД"))
                 {
-                    pthRTFfolder = folder;
+                    listRowUPD.listForUPDExel.Clear();
 
                     ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет " + dirN.Name.ToString());
-
-                    
-
+                    pthRTFfolder = folder;
                     string[] pathUPDs = Directory.GetFiles(pthRTFfolder);
 
                     foreach (var UPDPath in pathUPDs)
@@ -49,13 +47,12 @@ namespace testingConvertPDFfile
                         ReportBilderUPTSheet(listRowUPD, UPDPath);
                     }
                     outputeData.CreateSheetUPD(listRowUPD.listForUPDExel, sheet);
-
                 }
                 else if (folder.Contains("Заявление"))
                 {
+                    listRowPDF.listForPDFExel.Clear();
 
                     ExcelWorksheet sheet = package.Workbook.Worksheets.Add("Отчет " + dirN.Name.ToString());
-
                     pathPDFfolder = folder;
 
                     string[] pathPDFs = Directory.GetFiles(pathPDFfolder);
@@ -65,6 +62,7 @@ namespace testingConvertPDFfile
                         ReportBilderPDFSheet(listRowPDF, PDFPath);
                     }
                     outputeData.creatorTablePDF(listRowPDF.listForPDFExel, sheet);
+                    
                 }
             }
 

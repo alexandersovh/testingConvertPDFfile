@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace testingConvertPDFfile
+namespace PidPipen
 {
     internal class DistributionFail
     {
@@ -16,15 +16,15 @@ namespace testingConvertPDFfile
                 dataCteat = File.GetCreationTime(filename);
                 if (filename.Contains(".rtf") && filename.Contains("~$")!=true)
                 {
-                    File.Copy(filename, checkFail.CheckFail(muveToFail, "УПД", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    File.Move(filename, checkFail.CheckFail(muveToFail, "УПД", dataCteat, chek) + "\\" + Path.GetFileName(filename));
                 }
                 else if (filename.Contains("Заявление"))
                 {
-                    File.Copy(filename, checkFail.CheckFail(muveToFail, "Заявление", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    File.Move(filename, checkFail.CheckFail(muveToFail, "Заявление", dataCteat, chek) + "\\" + Path.GetFileName(filename));
                 }
                 else if (filename.Contains("statement_attachment ") || filename.Contains("confirm_") || filename.Contains("~$"))
                 {
-                    File.Copy(filename, checkFail.CheckFail(muveToFail, "trashcan", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    File.Move(filename, checkFail.CheckFail(muveToFail, "trashcan", dataCteat, chek) + "\\" + Path.GetFileName(filename));
                 }
             }
 

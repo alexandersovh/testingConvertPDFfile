@@ -11,7 +11,7 @@ using iText.Commons.Utils;
 using static System.Resources.ResXFileRef;
 
 
-namespace testingConvertPDFfile
+namespace PidPipen
 {
     internal class DataClient
     {

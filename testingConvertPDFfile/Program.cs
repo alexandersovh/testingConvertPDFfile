@@ -16,7 +16,7 @@ using OfficeOpenXml.Core.ExcelPackage;
 using Microsoft.Office.Core;
 
 
-namespace testingConvertPDFfile
+namespace PidPipen
 {
     internal class Program
     {

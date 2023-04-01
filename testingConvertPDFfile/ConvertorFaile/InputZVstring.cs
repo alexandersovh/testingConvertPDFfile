@@ -1,4 +1,4 @@
-﻿namespace testingConvertPDFfile
+﻿namespace PidPipen
 {
     internal class InputZVstring
     {
