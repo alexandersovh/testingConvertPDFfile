@@ -16,15 +16,15 @@ namespace PidPipen
                 dataCteat = File.GetCreationTime(filename);
                 if (filename.Contains(".rtf") && filename.Contains("~$")!=true)
                 {
-                    File.Move(filename, checkFail.CheckFail(muveToFail, "УПД", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    File.Copy(filename, checkFail.CheckFail(muveToFail, "УПД", dataCteat, chek) + "\\" + Path.GetFileName(filename));
                 }
                 else if (filename.Contains("Заявление"))
                 {
-                    File.Move(filename, checkFail.CheckFail(muveToFail, "Заявление", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    File.Copy(filename, checkFail.CheckFail(muveToFail, "Заявление", dataCteat, chek) + "\\" + Path.GetFileName(filename));
                 }
                 else if (filename.Contains("statement_attachment ") || filename.Contains("confirm_") || filename.Contains("~$"))
                 {
-                    File.Move(filename, checkFail.CheckFail(muveToFail, "trashcan", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    File.Copy(filename, checkFail.CheckFail(muveToFail, "trashcan", dataCteat, chek) + "\\" + Path.GetFileName(filename));
                 }
             }
 
