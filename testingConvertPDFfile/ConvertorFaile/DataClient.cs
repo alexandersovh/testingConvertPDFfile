@@ -61,7 +61,6 @@ namespace PidPipen
         {
             FileConvertors convertors = new FileConvertors();
             string stringText = convertors.RTFToText(path).ToString();
-            //string dateTime = Convert.ToString(File.GetCreationTime(path));
 
             Regex innCheck = new Regex(@"(?<=покупателя)\d+(?=\W.*Валюта)");
             MatchCollection innChecker = innCheck.Matches(stringText);
