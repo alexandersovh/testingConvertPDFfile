@@ -93,8 +93,8 @@ namespace PidPipen
                     KPP = "-",
                     UPDNuber = Convert.ToString(colum[0]),
                     UPDDate = Convert.ToString(colum[1]),
-                    АttorneyMen = "?",
-                    АttorneyFin = "?"
+                    АttorneyMen = "-",
+                    АttorneyFin = "-"
                 };
                 return UPDstring;
             }
