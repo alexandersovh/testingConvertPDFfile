@@ -34,7 +34,7 @@ namespace PidPipen
             foreach (string folder in PathFailList)
             {   
                 DirectoryInfo dirN = new DirectoryInfo(folder);
-                if (folder.Contains("УПД"))
+                if (folder.Contains("УПД") && !folder.Contains("~$"))
                 {
                     listRowUPD.listForUPDExel.Clear();
 
@@ -44,7 +44,11 @@ namespace PidPipen
 
                     foreach (var UPDPath in pathUPDs)
                     {
-                        ReportBilderUPTSheet(listRowUPD, UPDPath);
+                        
+                        if (!UPDPath.Contains("$"))
+                        {
+ReportBilderUPTSheet(listRowUPD, UPDPath); 
+                        }
                     }
                     outputeData.CreateSheetUPD(listRowUPD.listForUPDExel, sheet);
                 }

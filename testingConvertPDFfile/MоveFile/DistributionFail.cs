@@ -14,7 +14,7 @@ namespace PidPipen
             foreach (string filename in allfiles)
             {
                 dataCteat = File.GetCreationTime(filename);
-                if (filename.Contains(".rtf") && filename.Contains("~$")!=true)
+                if (filename.Contains(".rtf") && !filename.Contains("$"))
                 {
                     File.Copy(filename, checkFail.CheckFail(muveToFail, "УПД", dataCteat, chek) + "\\" + Path.GetFileName(filename));
                 }
