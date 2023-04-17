@@ -35,6 +35,14 @@ namespace PidPipen
             int row = 5;
             int column = 1;
 
+            sheet.Column(1).Width = 4;
+            sheet.Column(2).Width = 40;
+            sheet.Column(3).Width = 13;
+            sheet.Column(4).Width = 10;
+            sheet.Column(5).Width = 10;
+            sheet.Column(6).Width = 13;
+            sheet.Column(7).Width = 30;
+
             sheet.Cells["A1:G1"].Merge = true;
             sheet.Cells["A1:G1"].Value = "Внутренняя опись документов, предоставленных для оказания услуг УЦ";
             sheet.Cells["A2:G2"].Merge = true;
@@ -70,24 +78,33 @@ namespace PidPipen
                 row++;
                 counter++;
             }
-            sheet.Cells[row + 3, 1].Value = "Итого";
-            sheet.Cells[row + 3, 2].Value = Convert.ToString(counter - 1) + "()";
-            sheet.Cells[row + 3, 3].Value = "комплект документов";
+            sheet.Cells[row + 3, 2].Value = "Итого";
+            sheet.Cells[row + 3, 3].Value = Convert.ToString(counter - 1) + "()";
+            sheet.Cells[row + 3, 4].Value = "комплект документов";
             sheet.Cells[row + 5, 2].Value = "Количество листов внутренней описи";
             sheet.Cells[row + 6, 3].Value = "(цифрами и прописью)";
             sheet.Cells[row + 8, 2].Value = "Технический специалист УЦ";
-            sheet.Cells[row + 8, 5].Value = "Сивохин А.А.";
+            sheet.Cells[row + 8, 6].Value = "Сивохин А.А.";
             sheet.Cells[row + 9, 2].Value = "(должность составившего опись)";
             sheet.Cells[row + 9, 5].Value = "(подпись)";
             sheet.Cells[row + 9, 6].Value = "(расшифровка)";
-            sheet.Cells[row + 11, 1].Value = "Дата";
-            sheet.Cells[row + 11, 2].Value = thisDay.ToString("d");
+            sheet.Cells[row + 11, 2].Value = "Дата";
+            sheet.Cells[row + 11, 3].Value = thisDay.ToString("d");
         }
         public void CreateSheetUPD(List<InputUPDstring> report, ExcelWorksheet sheet)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             var package = new ExcelPackage();
             DateTime thisDay = DateTime.Today;
+            sheet.Column(1).Width = 4;
+            sheet.Column(2).Width = 50;
+            sheet.Column(3).Width = 13;
+            sheet.Column(4).Width = 12;
+            sheet.Column(5).Width = 15;
+            sheet.Column(6).Width = 10;
+            sheet.Column(7).Width = 15;
+            sheet.Column(8).Width = 15;
+
 
             sheet.Cells["A1:H1"].Merge = true;
             sheet.Cells["A1:H1"].Value = "Внутренняя опись бухгалтерских документов Москва - Центральный офис";
@@ -138,18 +155,18 @@ namespace PidPipen
                 counter++;
             }
 
-            sheet.Cells[row + 3, 1].Value = "Итого";
-            sheet.Cells[row + 3, 2].Value = Convert.ToString(counter - 1) + "()";
-            sheet.Cells[row + 3, 3].Value = "комплект документов";
+            sheet.Cells[row + 3, 2].Value = "Итого";
+            sheet.Cells[row + 3, 3].Value = Convert.ToString(counter - 1) + "()";
+            sheet.Cells[row + 3, 4].Value = "комплект документов";
             sheet.Cells[row + 5, 2].Value = "Количество листов внутренней описи";
             sheet.Cells[row + 6, 3].Value = "(цифрами и прописью)";
             sheet.Cells[row + 8, 2].Value = "Технический специалист УЦ";
-            sheet.Cells[row + 8, 5].Value = "Сивохин А.А.";
+            sheet.Cells[row + 8, 6].Value = "Сивохин А.А.";
             sheet.Cells[row + 9, 2].Value = "(должность составившего опись)";
             sheet.Cells[row + 9, 5].Value = "(подпись)";
             sheet.Cells[row + 9, 6].Value = "(расшифровка)";
-            sheet.Cells[row + 11, 1].Value = "Дата";
-            sheet.Cells[row + 11, 2].Value = thisDay.ToString("d");
+            sheet.Cells[row + 11, 2].Value = "Дата";
+            sheet.Cells[row + 11, 3].Value = thisDay.ToString("d");
         }
     }
 }

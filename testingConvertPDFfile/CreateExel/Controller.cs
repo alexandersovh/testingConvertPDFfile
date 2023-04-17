@@ -50,6 +50,7 @@ namespace PidPipen
                         }
                     }
                     outputeData.CreateSheetUPD(listRowUPD.listForUPDExel, sheet);
+                    //sheet.Protection.IsProtected = false;
                 }
                 else if (folder.Contains("Заявление"))
                 {
@@ -65,7 +66,7 @@ namespace PidPipen
                         ReportBilderPDFSheet(listRowPDF, PDFPath);
                     }
                     outputeData.creatorTablePDF(listRowPDF.listForPDFExel, sheet);
-
+                    //sheet.Protection.IsProtected = false;
                 }
             }
 
@@ -88,7 +89,7 @@ namespace PidPipen
             DateTime thisDay = DateTime.Today;
 
             Console.WriteLine("введити иммя папки с файлами для обработки");
-            string fileWithData = Console.ReadLine(); //C:\Users\alexandr\OneDrive\Рабочий стол\лаборатрория
+            string fileWithData = Console.ReadLine();
             Console.WriteLine("введити фаил куда сохранять или Enter");
             string fileMuveTo = Console.ReadLine();
             if (fileMuveTo == "")

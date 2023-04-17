@@ -42,7 +42,7 @@ namespace PidPipen
             }
             else
             {
-                Regex ZVdata = new Regex(@"(?<=ИНН.)\d{10}|(?<=№.)\D\D\d{9}|(?<=Фамилия\s(\w*\s){2})(\w*.){3}");
+                Regex ZVdata = new Regex(@"(?<=ИНН.)\d{12}|(?<=№.)\D\D\d{9}|(?<=Фамилия\s(\w*\s){2})(\w*.){3}");
                 MatchCollection colum = ZVdata.Matches(stringText);
                 InputZVstring zVstring = new InputZVstring
                 {
