@@ -27,6 +27,7 @@ namespace PidPipen
             var convertion = new Controller();
             DistributionFail workFail = new DistributionFail();
             string operation = "";
+            string ending;
 
             while (operation != "stope")
             {
@@ -48,9 +49,9 @@ namespace PidPipen
                         convertion.InputControllers(baze.FileMuveTo, baze.FileReport);
                         break;
                     case "":
-                        Console.WriteLine("закршить программу?");
-                        operation = "stope";
-                        Console.ReadKey();
+                        Console.WriteLine("закршить программу? y/n");
+                        ending = Console.ReadLine();
+                        operation  = ending == "y" ? "stope" : "";
                         break;
                     case "t":
                         string path111 = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\drops";//"C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\итог\\УПД 1.2023";   //Console.ReadLine();
