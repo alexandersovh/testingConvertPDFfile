@@ -122,16 +122,20 @@ namespace PidPipen
             sheet.Cells["E3:E4"].Merge = true;
             sheet.Cells["E3:E4"].Value = "Присвоенный номер БМ";
             sheet.Cells["F3:F4"].Merge = true;
+
             sheet.Cells["F3:F4"].Value = "Дата заявления";
 
             sheet.Cells["G3:H3"].Merge = true;
             sheet.Cells["G3:H3"].Value = "Документы в комплекте (перечисление подписанных бух.доков и доверенностей)";
+            //sheet.Cells["G3:H3"].Style.;
             sheet.Cells["G4"].Value = "Универсальный передаточный документ";
             sheet.Cells["H4"].Value = "доверенность на Универсальный передаточный документ";
 
             int counter = 1;
             int row = 5;
             int column = 1;
+
+
 
             foreach (var item in report)
             {
@@ -154,6 +158,10 @@ namespace PidPipen
                 row++;
                 counter++;
             }
+
+            //sheet.Cells[1,1,row,8].Style.Border.;
+
+
 
             sheet.Cells[row + 3, 2].Value = "Итого";
             sheet.Cells[row + 3, 3].Value = Convert.ToString(counter - 1) + "()";

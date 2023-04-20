@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RtfPipe.Tokens;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -11,24 +12,33 @@ namespace PidPipen
             CheckFailBilder checkFail = new CheckFailBilder();
             DateTime dataCteat;
             string[] allfiles = Directory.GetFiles(folderPath);
-            foreach (string filename in allfiles)
+            string[] allFolder = Directory.GetDirectories(folderPath);
+            string[] allElement = allfiles.Concat(allFolder).ToArray();
+            foreach (string filename in allElement)
             {
-                dataCteat = File.GetCreationTime(filename);
-                if (filename.Contains(".rtf") && !filename.Contains("$"))
+                FileAttributes attr = File.GetAttributes(filename);
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
                 {
-                    File.Copy(filename, checkFail.CheckFail(muveToFail, "УПД", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    FiltrFail(filename, muveToFail, chek);
                 }
-                else if (filename.Contains("Заявление"))
+                else
                 {
-                    File.Copy(filename, checkFail.CheckFail(muveToFail, "Заявление", dataCteat, chek) + "\\" + Path.GetFileName(filename));
-                }
-                else if (filename.Contains("statement_attachment ") || filename.Contains("confirm_") || filename.Contains("~$"))
-                {
-                    File.Copy(filename, checkFail.CheckFail(muveToFail, "trashcan", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    dataCteat = File.GetCreationTime(filename);
+                    if (filename.Contains(".rtf") && !filename.Contains("$"))
+                    {
+                        File.Copy(filename, checkFail.CheckFail(muveToFail, "УПД", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    }
+                    else if (filename.Contains("Заявление"))
+                    {
+                        File.Copy(filename, checkFail.CheckFail(muveToFail, "Заявление", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    }
+                    else if (filename.Contains("statement_attachment ") || filename.Contains("confirm_") || filename.Contains("~$"))
+                    {
+                        File.Copy(filename, checkFail.CheckFail(muveToFail, "trashcan", dataCteat, chek) + "\\" + Path.GetFileName(filename));
+                    }
                 }
             }
 
         }
-
     }
 }
