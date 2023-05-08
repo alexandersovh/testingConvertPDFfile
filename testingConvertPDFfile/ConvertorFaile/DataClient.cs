@@ -63,12 +63,21 @@ namespace PidPipen
             string stringText = convertors.RTFToText(path).ToString();
 
             Regex innCheck = new Regex(@"(?<=покупателя)\d+(?=\W.*Валюта)");
+            Regex dataYear = new Regex(@"(?<=от\s+\d{2}.\d{2}.)\d{4}(?=\s+Исправление)");
             MatchCollection innChecker = innCheck.Matches(stringText);
-
+            Regex ZVdata;
             string inn = Convert.ToString(innChecker[0]);
             if (inn.Length == 10)
             {
-                Regex ZVdata = new Regex(@"(?<=Счет-фактура.№\s{5})\D+\d{9}\W\d{2}|(?<=от\s+)\d{2}.\d{2}.\d{4}(?=\s+Исправление)|(?<=3Покупатель)(\S+.+)(?=Адрес)|(?<=3Покупатель)(\S+.+)(?=\sАдрес)|(?<=\sпокупателя)\d+(?=\W\d+Валюта)|(?<=покупателя\d+\W)\d{9}(?=Валюта)");
+                if (dataYear.ToString().Contains("2022"))
+                {
+                    ZVdata = new Regex(@"(?<=Счет-фактура.№\s{5})\D+\d{9}\W\d{2}|(?<=от\s+)\d{2}.\d{2}.\d{4}(?=\s+Исправление)|(?<=2Покупатель)(\S+.+)(?=Адрес)|(?<=3Покупатель)(\S+.+)(?=\sАдрес)|(?<=\sпокупателя)\d+(?=\W\d+Валюта)|(?<=покупателя\d+\W)\d{9}(?=Валюта)");
+                }
+                else
+                {
+                     ZVdata = new Regex(@"(?<=Счет-фактура.№\s{5})\D+\d{9}\W\d{2}|(?<=от\s+)\d{2}.\d{2}.\d{4}(?=\s+Исправление)|(?<=3Покупатель)(\S+.+)(?=Адрес)|(?<=3Покупатель)(\S+.+)(?=\sАдрес)|(?<=\sпокупателя)\d+(?=\W\d+Валюта)|(?<=покупателя\d+\W)\d{9}(?=Валюта)");
+                }
+
                 MatchCollection colum = ZVdata.Matches(stringText);
                 InputUPDstring UPDstring = new InputUPDstring
                 {
