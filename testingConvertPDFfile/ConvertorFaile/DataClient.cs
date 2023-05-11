@@ -9,6 +9,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 using iText.Commons.Utils;
 using static System.Resources.ResXFileRef;
+using System.Xml.Linq;
+using Microsoft.Office.Interop.Excel;
 
 
 namespace PidPipen
@@ -19,85 +21,78 @@ namespace PidPipen
         public InputZVstring ZVToEndData(string path)
         {
             FileConvertors convertors = new FileConvertors();
-            string stringText = convertors.PDFToText(path).ToString();
-            DateTime dateTime = File.GetLastWriteTime(path);
-            Regex innCheck = new Regex(@"(?<=ИНН.)\d+");
-            MatchCollection innChecker = innCheck.Matches(stringText);
+            string stringText = convertors.PDFToText(path);
+            string dateTime = File.GetLastWriteTime(path).ToString();
 
-            string inn = Convert.ToString(innChecker[0]);
-            if (inn.Length == 10)
+            var inn = ReguxConvert(new Regex(@"(?<=ИНН.)\d+"), stringText) ?? "ошибка ZV";
+
+            string kpp = ReguxConvert(new Regex(@"(?<=КПП.)\d{9}"), stringText) ?? "-";
+
+            string number = ReguxConvert(new Regex(@"(?<=№.)\D\D\d{9}"), stringText) ?? "ошибка ZV";
+
+            string fio = ReguxConvert(new Regex(@"(?<=Фамилия\s(\w*\s){2})(\w*.){3}"), stringText) ?? "ошибка ZV";
+
+            string name = ReguxConvert(new Regex(@"(?<=Наименование организации\s)([\s\S]+?)(?=\sГород)"), stringText) ?? ReguxConvert(new Regex(@"(?<=Фамилия\s(\w*\s){2})(\w*.){3}"), stringText);
+
+            InputZVstring zVstring = new InputZVstring
             {
-                Regex ZVdata = new Regex(@"(?<=Наименование организации\s)([\s\S]+?)(?=\sГород)|(?<=ИНН.)\d{10}|(?<=КПП.)\d{9}|(?<=№.)\D\D\d{9}|(?<=Фамилия\s(\w*\s){2})(\w*.){3}");
-                MatchCollection colum = ZVdata.Matches(stringText);
-                InputZVstring zVstring = new InputZVstring
-                {
-                    Name = Convert.ToString(colum[2]),
-                    INN = Convert.ToString(colum[3]),
-                    KPP = Convert.ToString(colum[4]),
-                    ZVNuber = Convert.ToString(colum[0]),
-                    FaileDate = dateTime.ToString("d"),
-                    FIO = Convert.ToString(colum[1])
-                };
-                return zVstring;
-            }
-            else
-            {
-                Regex ZVdata = new Regex(@"(?<=ИНН.)\d{12}|(?<=№.)\D\D\d{9}|(?<=Фамилия\s(\w*\s){2})(\w*.){3}");
-                MatchCollection colum = ZVdata.Matches(stringText);
-                InputZVstring zVstring = new InputZVstring
-                {
-                    Name = Convert.ToString(colum[1]),
-                    INN = Convert.ToString(colum[2]),
-                    KPP = "-",
-                    ZVNuber = Convert.ToString(colum[0]),
-                    FaileDate = dateTime.ToString("d"),
-                    FIO = Convert.ToString(colum[1])
-                };
-                return zVstring;
-            }
+                Name = name,
+                INN = inn,
+                KPP = kpp,
+                ZVNuber = number,
+                FaileDate = dateTime,
+                FIO = fio
+            };
+            return zVstring;
         }
-
         public InputUPDstring UPDToEndData(string path)
         {
             FileConvertors convertors = new FileConvertors();
-            string stringText = convertors.RTFToText(path).ToString();
+            string stringText = convertors.RTFToText(path);
 
-            Regex innCheck = new Regex(@"(?<=покупателя)\d+(?=\W.*Валюта)");
-            MatchCollection innChecker = innCheck.Matches(stringText);
+            string numUpd = ReguxConvert(new Regex(@"(?<=Счет-фактура.№\s{5})\D+\d{9}\W\d{2}"), stringText) ?? "ошибка UPD";
 
-            string inn = Convert.ToString(innChecker[0]);
+            string datе = ReguxConvert(new Regex(@"(?<=от\s+)\d{2}.\d{2}.\d{4}(?=\s+Исправление)"), stringText) ?? "-";
+
+            string name = ReguxConvert(new Regex(@"(?<=Покупатель)(.+)(?=Адрес)|(?<=Покупатель)(.+\s)(?=Адрес)"), stringText) ?? "ошибка UPD";
+
+            string inn = ReguxConvert(new Regex(@"(?<=\sпокупателя)\d+(?=.+Валюта)"), stringText) ?? "ошибка UPD";
+
+            string kpp = ReguxConvert(new Regex(@"(?<=покупателя\d+\W)\d{9}(?=Валюта)"), stringText) ?? "-";
+
+            string АttorneyMen = "-";
+            string АttorneyFin = "-";
+
             if (inn.Length == 10)
+            { АttorneyMen = "?"; АttorneyFin = "?"; }
+
+            InputUPDstring UPDstring = new InputUPDstring
             {
-                Regex ZVdata = new Regex(@"(?<=Счет-фактура.№\s{5})\D+\d{9}\W\d{2}|(?<=от\s+)\d{2}.\d{2}.\d{4}(?=\s+Исправление)|(?<=3Покупатель)(\S+.+)(?=Адрес)|(?<=3Покупатель)(\S+.+)(?=\sАдрес)|(?<=\sпокупателя)\d+(?=\W\d+Валюта)|(?<=покупателя\d+\W)\d{9}(?=Валюта)");
-                MatchCollection colum = ZVdata.Matches(stringText);
-                InputUPDstring UPDstring = new InputUPDstring
-                {
-                    Name = Convert.ToString(colum[2]),
-                    INN = Convert.ToString(colum[3]),
-                    KPP = Convert.ToString(colum[4]),
-                    UPDNuber = Convert.ToString(colum[0]),
-                    UPDDate = Convert.ToString(colum[1]),
-                    АttorneyMen = "?",
-                    АttorneyFin = "?"
-                };
-                return UPDstring;
+                Name = name,
+                INN = inn,
+                KPP = kpp,
+                UPDNuber = numUpd,
+                UPDDate = datе,
+                АttorneyMen = АttorneyMen,
+                АttorneyFin = АttorneyFin
+            };
+            return UPDstring;
+        }
+
+        public string ReguxConvert(Regex reegularExpressions, string genString)
+        {
+            string result = "";
+            MatchCollection matches = reegularExpressions.Matches(genString);
+            if (matches.Count > 0)
+            {
+                foreach (Match match in matches)
+                    result = result + match;
             }
             else
             {
-                Regex ZVdata = new Regex(@"(?<=Счет-фактура.№\s+)\w+\d{9}\W\d{2}|(?<=от\s+)\d{2}.\d{2}.\d{4}(?=\s+Исправление)|(?<=Покупатель)(.+\s*)(?=Адрес)|(?<=ИНН/КПП\sпокупателя)\d+(?=\W+Валюта)");
-                MatchCollection colum = ZVdata.Matches(stringText);
-                InputUPDstring UPDstring = new InputUPDstring
-                {
-                    Name = Convert.ToString(colum[2]),
-                    INN = Convert.ToString(colum[3]),
-                    KPP = "-",
-                    UPDNuber = Convert.ToString(colum[0]),
-                    UPDDate = Convert.ToString(colum[1]),
-                    АttorneyMen = "-",
-                    АttorneyFin = "-"
-                };
-                return UPDstring;
+                result = null;
             }
+            return result;
         }
     }
 }

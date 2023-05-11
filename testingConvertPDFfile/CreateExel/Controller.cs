@@ -76,14 +76,29 @@ namespace PidPipen
         }
         static private void ReportBilderPDFSheet(DisplayToExcel listRowPDF, string pathPDFfail)
         {
-            var dataPDF = new DataClient().ZVToEndData(pathPDFfail);
-            listRowPDF.CreateListPDF(dataPDF);
+            try
+            {
+                var dataPDF = new DataClient().ZVToEndData(pathPDFfail);
+                listRowPDF.CreateListPDF(dataPDF);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " Заявление " + pathPDFfail);
+            }
+
         }
         static private void ReportBilderUPTSheet(DisplayToExcel listRowUPD, string pthRTFfile)
         {
-            var dataUPD = new DataClient().UPDToEndData(pthRTFfile);
-            listRowUPD.CreateListUPD(dataUPD);
+            try
+            {
+                var dataUPD = new DataClient().UPDToEndData(pthRTFfile);
+                listRowUPD.CreateListUPD(dataUPD);
         }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " УПД " + pthRTFfile);
+            }
+}
         public WorkFile FailsForWork()
         {
             DateTime thisDay = DateTime.Today;
@@ -96,6 +111,23 @@ namespace PidPipen
             {
                 fileMuveTo = fileWithData;
             }
+
+            string fileReport = fileMuveTo + "\\отчет от " + thisDay.ToString("d") + ".xlsx";
+
+            WorkFile fileBaze = new WorkFile
+            {
+                FileWithData = fileWithData,
+                FileMuveTo = fileMuveTo,
+                FileReport = fileReport
+            };
+            return fileBaze;
+        }
+        public WorkFile FailsForWork(string path)
+        {
+            DateTime thisDay = DateTime.Today;
+
+            string fileWithData = path;
+            string fileMuveTo = path;
 
             string fileReport = fileMuveTo + "\\отчет от " + thisDay.ToString("d") + ".xlsx";
 

@@ -31,35 +31,41 @@ namespace PidPipen
 
             while (operation != "stope")
             {
-                Console.WriteLine("Выбирите действие:\n 'fm' - чтобы отфильтровать файлы,\n 'fd' - чтобы отфильтровать файлы, \n 'r' - создать Exel файл с отчетом, \n Enter - для акрытия программы");
-                operation = Console.ReadLine();
-
-                switch (operation)
+                try
                 {
-                    case "fm":
-                        baze = controller.FailsForWork();
-                        workFail.FiltrFail(baze.FileWithData, baze.FileMuveTo, "m");
-                        break;
-                    case "fd":
-                        baze = controller.FailsForWork();
-                        workFail.FiltrFail(baze.FileWithData, baze.FileMuveTo, "d");
-                        break;
-                    case "r":
-                        baze = controller.FailsForWork();
-                        convertion.InputControllers(baze.FileMuveTo, baze.FileReport);
-                        break;
-                    case "":
-                        Console.WriteLine("закршить программу? y/n");
-                        ending = Console.ReadLine();
-                        operation  = ending == "y" ? "stope" : "";
-                        break;
-                    case "t":
-                        string path111 = "C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\drops";//"C:\\Users\\alexandr\\OneDrive\\Рабочий стол\\итог\\УПД 1.2023";   //Console.ReadLine();
-                        TestConvert testToText = new TestConvert();
-                        testToText.cikleTest(path111);
-                        break;
-                }
+                    Console.WriteLine("Выбирите действие:\n 'fm' - чтобы отфильтровать файлы,\n 'fd' - чтобы отфильтровать файлы, \n 'r' - создать Exel файл с отчетом, \n Enter - для акрытия программы");
+                    operation = Console.ReadLine();
 
+                    switch (operation)
+                    {
+                        case "fm":
+                            baze = controller.FailsForWork();
+                            workFail.FiltrFail(baze.FileWithData, baze.FileMuveTo, "m");
+                            break;
+                        case "fd":
+                            baze = controller.FailsForWork();
+                            workFail.FiltrFail(baze.FileWithData, baze.FileMuveTo, "d");
+                            break;
+                        case "r":
+                            baze = controller.FailsForWork();
+                            convertion.InputControllers(baze.FileMuveTo, baze.FileReport);
+                            break;
+                        case "":
+                            Console.WriteLine("закршить программу? y/n");
+                            ending = Console.ReadLine();
+                            operation = ending == "y" ? "stope" : "";
+                            break;
+                        case "t":
+                            string path111 = "";
+                            baze = controller.FailsForWork(path111);
+                            convertion.InputControllers(baze.FileMuveTo, baze.FileReport);
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
         }
     }
