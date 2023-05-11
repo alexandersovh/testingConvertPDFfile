@@ -33,7 +33,7 @@ namespace PidPipen
             {
                 try
                 {
-                    Console.WriteLine("Выбирите действие:\n 'fm' - чтобы отфильтровать файлы,\n 'fd' - чтобы отфильтровать файлы, \n 'r' - создать Exel файл с отчетом, \n Enter - для акрытия программы");
+                    Console.WriteLine("Выбирите действие:\n 'fm' - чтобы отфильтровать файлы по месяцам,\n 'fd' - чтобы отфильтровать файлы по дням, \n 'r' - создать Exel файл с отчетом, \n Enter - для акрытия программы");
                     operation = Console.ReadLine();
 
                     switch (operation)
